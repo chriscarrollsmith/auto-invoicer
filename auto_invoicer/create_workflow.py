@@ -36,7 +36,7 @@ def main():
     secrets_env = "\n".join([f'            {secret}: ${{{{ secrets.{secret} }}}}' for secret in secrets])
 
     # Build secret validation script
-    secrets_validation_script = "\n".join([f'            if [ -z "${{{secret.upper()}}}" ]; then echo "Missing secret: {secret}"; exit 1; fi' for secret in secrets])
+    secrets_validation_script = "\n".join([f'            if [ -z "${{{secret}}}" ]; then echo "Missing secret: {secret}"; exit 1; fi' for secret in secrets])
 
     # Build environment variables for the script
     environment_variables = "\n".join([f'          {secret}: ${{{{ secrets.{secret} }}}}' for secret in secrets])
