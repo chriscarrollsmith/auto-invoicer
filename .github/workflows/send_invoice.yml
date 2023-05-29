@@ -10,11 +10,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.11
-
       - name: Validate secrets
         env:
             start_date: ${{ secrets.start_date }}
@@ -58,37 +53,3 @@ jobs:
             if [ -z "${EMAIL_SERVER}" ]; then echo "Missing secret: email_server"; exit 1; fi
             if [ -z "${EMAIL_USERNAME}" ]; then echo "Missing secret: email_username"; exit 1; fi
             if [ -z "${EMAIL_PASSWORD}" ]; then echo "Missing secret: email_password"; exit 1; fi
-
-      - name: Install and configure Poetry
-        uses: snok/install-poetry@v1
-
-      - name: Install project
-        run: |
-          poetry shell
-          poetry install --no-interaction
-
-      - name: Generate invoice
-        run: |
-          poetry shell
-          python auto_invoicer/generate_invoice.py
-        env:
-          start_date: ${{ secrets.start_date }}
-          interval_unit: ${{ secrets.interval_unit }}
-          interval_quantity: ${{ secrets.interval_quantity }}
-          name: ${{ secrets.name }}
-          address_line_1: ${{ secrets.address_line_1 }}
-          address_line_2: ${{ secrets.address_line_2 }}
-          email: ${{ secrets.email }}
-          phone: ${{ secrets.phone }}
-          recipient: ${{ secrets.recipient }}
-          recipient_address_line_1: ${{ secrets.recipient_address_line_1 }}
-          recipient_address_line_2: ${{ secrets.recipient_address_line_2 }}
-          recipient_email: ${{ secrets.recipient_email }}
-          services_rendered: ${{ secrets.services_rendered }}
-          amount_owed: ${{ secrets.amount_owed }}
-          bank: ${{ secrets.bank }}
-          routing_number: ${{ secrets.routing_number }}
-          account_number: ${{ secrets.account_number }}
-          email_server: ${{ secrets.email_server }}
-          email_username: ${{ secrets.email_username }}
-          email_password: ${{ secrets.email_password }}
