@@ -21,7 +21,8 @@ Change `send_email` to True to send the invoice by email.
 
 ## Automate invoicing with Github Actions
 If you're going to be invoicing from a public repo, set `html_output` and `pdf_output` to `False` in `generate_invoice.py`. This is very important for protecting any personal information in your invoice from being shared in a public repo!
-Set up Github CLI: https://cli.github.com/manual/
+Set up Github CLI: https://github.com/cli/cli#installation
+Login with `gh auth login`
 Create Github secrets from .env file: `gh secret set -f .env`
 Generate a Github Actions workflow from .env file: `auto_invoicer/create_workflow.py`
 Commit and push Github Actions workflow
