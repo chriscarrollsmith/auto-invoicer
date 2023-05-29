@@ -71,13 +71,11 @@ jobs:
 
       - name: Install project
         run: |
-          poetry shell
           poetry install --no-interaction
 
       - name: Generate invoice
         run: |
-          poetry shell
-          python auto_invoicer/generate_invoice.py
+          poetry run python auto_invoicer/generate_invoice.py
         env:
 {environment_variables}
 """
