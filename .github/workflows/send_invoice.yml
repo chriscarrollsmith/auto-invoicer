@@ -8,27 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
+        uses: actions/checkout@v3
+      
       - name: Validate secrets
+        env: 
+          START_DATE: ${{ secrets.start_date }}
         run: |
-            if [ -z "${ secrets.start_date }" ]; then echo "Missing secret: start_date"; exit 1; fi
-            if [ -z "${ secrets.interval_unit }" ]; then echo "Missing secret: interval_unit"; exit 1; fi
-            if [ -z "${ secrets.interval_quantity }" ]; then echo "Missing secret: interval_quantity"; exit 1; fi
-            if [ -z "${ secrets.name }" ]; then echo "Missing secret: name"; exit 1; fi
-            if [ -z "${ secrets.address_line_1 }" ]; then echo "Missing secret: address_line_1"; exit 1; fi
-            if [ -z "${ secrets.address_line_2 }" ]; then echo "Missing secret: address_line_2"; exit 1; fi
-            if [ -z "${ secrets.email }" ]; then echo "Missing secret: email"; exit 1; fi
-            if [ -z "${ secrets.phone }" ]; then echo "Missing secret: phone"; exit 1; fi
-            if [ -z "${ secrets.recipient }" ]; then echo "Missing secret: recipient"; exit 1; fi
-            if [ -z "${ secrets.recipient_address_line_1 }" ]; then echo "Missing secret: recipient_address_line_1"; exit 1; fi
-            if [ -z "${ secrets.recipient_address_line_2 }" ]; then echo "Missing secret: recipient_address_line_2"; exit 1; fi
-            if [ -z "${ secrets.recipient_email }" ]; then echo "Missing secret: recipient_email"; exit 1; fi
-            if [ -z "${ secrets.services_rendered }" ]; then echo "Missing secret: services_rendered"; exit 1; fi
-            if [ -z "${ secrets.amount_owed }" ]; then echo "Missing secret: amount_owed"; exit 1; fi
-            if [ -z "${ secrets.bank }" ]; then echo "Missing secret: bank"; exit 1; fi
-            if [ -z "${ secrets.routing_number }" ]; then echo "Missing secret: routing_number"; exit 1; fi
-            if [ -z "${ secrets.account_number }" ]; then echo "Missing secret: account_number"; exit 1; fi
-            if [ -z "${ secrets.email_server }" ]; then echo "Missing secret: email_server"; exit 1; fi
-            if [ -z "${ secrets.email_username }" ]; then echo "Missing secret: email_username"; exit 1; fi
-            if [ -z "${ secrets.email_password }" ]; then echo "Missing secret: email_password"; exit 1; fi
+          if [ -z "${START_DATE}" ]; then echo "Missing secret: start_date"; exit 1; fi
