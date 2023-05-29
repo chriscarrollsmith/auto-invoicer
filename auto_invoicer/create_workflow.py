@@ -32,8 +32,11 @@ def main():
     # List all secrets from .env file
     secrets = list(config.keys())
 
+    # Build environment variables for the secrets validation script
+    secrets_env = "\n".join([f'            {secret}: ${{{{ secrets.{secret} }}}}' for secret in secrets])
+
     # Build secret validation script
-    secrets_validation_script = "\n".join([f'            if [ -z "${{ secrets.{secret} }}" ]; then echo "Missing secret: {secret}"; exit 1; fi' for secret in secrets])
+    secrets_validation_script = "\n".join([f'            if [ -z "${{{secret.upper()}}}" ]; then echo "Missing secret: {secret}"; exit 1; fi' for secret in secrets])
 
     # Build environment variables for the script
     environment_variables = "\n".join([f'          {secret}: ${{{{ secrets.{secret} }}}}' for secret in secrets])
@@ -58,20 +61,22 @@ jobs:
           python-version: 3.11
 
       - name: Validate secrets
+        env:
+{secrets_env}
         run: |
 {secrets_validation_script}
 
-      - name: Install and configure poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1
 
-      - name: Install project dependencies
+      - name: Install project
         run: |
-          poetry install
+          poetry shell
+          poetry install --no-interaction
 
       - name: Generate invoice
         run: |
+          poetry shell
           python auto_invoicer/generate_invoice.py
         env:
 {environment_variables}

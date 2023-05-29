@@ -9,9 +9,86 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+
       - name: Validate secrets
-        env: 
-          START_DATE: ${{ secrets.start_date }}
+        env:
+            start_date: ${{ secrets.start_date }}
+            interval_unit: ${{ secrets.interval_unit }}
+            interval_quantity: ${{ secrets.interval_quantity }}
+            name: ${{ secrets.name }}
+            address_line_1: ${{ secrets.address_line_1 }}
+            address_line_2: ${{ secrets.address_line_2 }}
+            email: ${{ secrets.email }}
+            phone: ${{ secrets.phone }}
+            recipient: ${{ secrets.recipient }}
+            recipient_address_line_1: ${{ secrets.recipient_address_line_1 }}
+            recipient_address_line_2: ${{ secrets.recipient_address_line_2 }}
+            recipient_email: ${{ secrets.recipient_email }}
+            services_rendered: ${{ secrets.services_rendered }}
+            amount_owed: ${{ secrets.amount_owed }}
+            bank: ${{ secrets.bank }}
+            routing_number: ${{ secrets.routing_number }}
+            account_number: ${{ secrets.account_number }}
+            email_server: ${{ secrets.email_server }}
+            email_username: ${{ secrets.email_username }}
+            email_password: ${{ secrets.email_password }}
         run: |
-          if [ -z "${START_DATE}" ]; then echo "Missing secret: start_date"; exit 1; fi
+            if [ -z "${START_DATE}" ]; then echo "Missing secret: start_date"; exit 1; fi
+            if [ -z "${INTERVAL_UNIT}" ]; then echo "Missing secret: interval_unit"; exit 1; fi
+            if [ -z "${INTERVAL_QUANTITY}" ]; then echo "Missing secret: interval_quantity"; exit 1; fi
+            if [ -z "${NAME}" ]; then echo "Missing secret: name"; exit 1; fi
+            if [ -z "${ADDRESS_LINE_1}" ]; then echo "Missing secret: address_line_1"; exit 1; fi
+            if [ -z "${ADDRESS_LINE_2}" ]; then echo "Missing secret: address_line_2"; exit 1; fi
+            if [ -z "${EMAIL}" ]; then echo "Missing secret: email"; exit 1; fi
+            if [ -z "${PHONE}" ]; then echo "Missing secret: phone"; exit 1; fi
+            if [ -z "${RECIPIENT}" ]; then echo "Missing secret: recipient"; exit 1; fi
+            if [ -z "${RECIPIENT_ADDRESS_LINE_1}" ]; then echo "Missing secret: recipient_address_line_1"; exit 1; fi
+            if [ -z "${RECIPIENT_ADDRESS_LINE_2}" ]; then echo "Missing secret: recipient_address_line_2"; exit 1; fi
+            if [ -z "${RECIPIENT_EMAIL}" ]; then echo "Missing secret: recipient_email"; exit 1; fi
+            if [ -z "${SERVICES_RENDERED}" ]; then echo "Missing secret: services_rendered"; exit 1; fi
+            if [ -z "${AMOUNT_OWED}" ]; then echo "Missing secret: amount_owed"; exit 1; fi
+            if [ -z "${BANK}" ]; then echo "Missing secret: bank"; exit 1; fi
+            if [ -z "${ROUTING_NUMBER}" ]; then echo "Missing secret: routing_number"; exit 1; fi
+            if [ -z "${ACCOUNT_NUMBER}" ]; then echo "Missing secret: account_number"; exit 1; fi
+            if [ -z "${EMAIL_SERVER}" ]; then echo "Missing secret: email_server"; exit 1; fi
+            if [ -z "${EMAIL_USERNAME}" ]; then echo "Missing secret: email_username"; exit 1; fi
+            if [ -z "${EMAIL_PASSWORD}" ]; then echo "Missing secret: email_password"; exit 1; fi
+
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install project
+        run: |
+          poetry shell
+          poetry install --no-interaction
+
+      - name: Generate invoice
+        run: |
+          poetry shell
+          python auto_invoicer/generate_invoice.py
+        env:
+          start_date: ${{ secrets.start_date }}
+          interval_unit: ${{ secrets.interval_unit }}
+          interval_quantity: ${{ secrets.interval_quantity }}
+          name: ${{ secrets.name }}
+          address_line_1: ${{ secrets.address_line_1 }}
+          address_line_2: ${{ secrets.address_line_2 }}
+          email: ${{ secrets.email }}
+          phone: ${{ secrets.phone }}
+          recipient: ${{ secrets.recipient }}
+          recipient_address_line_1: ${{ secrets.recipient_address_line_1 }}
+          recipient_address_line_2: ${{ secrets.recipient_address_line_2 }}
+          recipient_email: ${{ secrets.recipient_email }}
+          services_rendered: ${{ secrets.services_rendered }}
+          amount_owed: ${{ secrets.amount_owed }}
+          bank: ${{ secrets.bank }}
+          routing_number: ${{ secrets.routing_number }}
+          account_number: ${{ secrets.account_number }}
+          email_server: ${{ secrets.email_server }}
+          email_username: ${{ secrets.email_username }}
+          email_password: ${{ secrets.email_password }}
