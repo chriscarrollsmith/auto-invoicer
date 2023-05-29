@@ -136,3 +136,4 @@ Items that still need work:
 - Add support for including a custom message in the email
 - Address the issue of spam filters blocking the email
 - Figure out how to get Gmail SMTP auth to work
+- Figure out if it would be best to recommend doing work on a separate branch from main

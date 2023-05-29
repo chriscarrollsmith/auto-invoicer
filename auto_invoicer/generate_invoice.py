@@ -198,7 +198,7 @@ if __name__ == '__main__':
     template_filepath = 'template/invoice_template.md'
     assets_dir = 'template/assets'
     output_dir = 'output'
-    send_email = False
+    send_email = True
     html_output = False
     pdf_output = False
 
