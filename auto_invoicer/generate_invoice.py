@@ -198,9 +198,9 @@ if __name__ == '__main__':
     template_filepath = 'template/invoice_template.md'
     assets_dir = 'template/assets'
     output_dir = 'output'
-    send_email = False
-    html_output = True
-    pdf_output = True
+    send_email = True
+    html_output = False
+    pdf_output = False
 
     # If .env exists, load environment variables from .env
     # (Note: .env should not be committed to version control! For cloud
