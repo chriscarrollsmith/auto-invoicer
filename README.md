@@ -1,6 +1,6 @@
 # Automatic invoicing
 
-Sample output: [PDF](https://github.com/chriscarrollsmith/auto-invoicer/blob/main/output/2023-05-29.pdf)
+Sample output: [HTML]( https://htmlpreview.github.io/?https://github.com/chriscarrollsmith/auto-invoicer/blob/main/output/2023-05-29.html) | [PDF](https://github.com/chriscarrollsmith/auto-invoicer/blob/main/output/2023-05-29.pdf)
 
 ## Setup
 
