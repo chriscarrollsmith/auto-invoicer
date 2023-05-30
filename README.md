@@ -62,7 +62,7 @@ If you add any variables to the template, you will need to add them to `.env`. I
 
 ## Build and send invoices locally
 
-To build invoices locally, open `auto_invoicer/generate_invoice.py` and change the `html_output` and `pdf_output` options to `True`. 
+To build invoices locally, open `auto_invoicer/generate_invoice.py` and change the `html_output` and `pdf_output` options to `True`. Built HTML and PDF files will go into the `output` directory.
 
 To send your invoice by email, open `auto_invoicer/generate_invoice.py` and change the `send_email` option to `True`.
 
@@ -72,8 +72,6 @@ Once you've set your desired options, run,
 poetry shell
 python generate_invoice.py
 ```
-
-Built HTML and PDF files will go into the `output` directory. Currently, the script will fail if you try to build a PDF invoice without doing an HTML build first. This is an easy fix, but I haven't gotten around to it yet.
 
 ## Automate invoicing with Github Actions
 
@@ -130,7 +128,6 @@ If you have any questions, comments, or suggestions, please feel free to open an
 
 Items that still need work:
 
-- Add support for building PDF locally without building HTML first (just requires some refactoring of code I've already written)
 - Add support for automatically building a workflow that executes on push or a manual trigger (for testing purposes)
 - Add support for BCC/CC and multiple recipients
 - Add support for including a custom message in the email
