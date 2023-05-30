@@ -135,3 +135,4 @@ Items that still need work:
 - Address the issue of spam filters blocking the email (maybe would be fixed by custom message mentioned above, or by initial message on push, asking recipient to add sender to contacts)
 - Figure out how to get Gmail SMTP auth to work
 - Figure out if it would be best to recommend doing deployment on a separate branch from main, and what it would take to do multiple deployments on multiple branches (can you set secrets by branch rather than by repo?)
+- Add comprehensive unit tests
