@@ -122,7 +122,7 @@ Then commit and push your changes to Github. You should now be able to see your 
 
 ## An important note about security
 
-DO NOT PUSH YOUR `.env` FILE TO A PUBLIC REPO! It is listed in `.gitignore` to protect you from accidentally sharing personal info!
+DO NOT PUSH YOUR `.env` FILE OR `output` FILES TO A PUBLIC REPO! These are listed in `.gitignore` to protect you from accidentally sharing personal info!
 
 ## Contributing
 
@@ -130,10 +130,11 @@ If you have any questions, comments, or suggestions, please feel free to open an
 
 Items that still need work:
 
-- Add support for building PDF locally without HTML
-- Add support for automatically building a workflow that executes on push
-- Add support for multiple recipients
+- Add support for building PDF locally without building HTML first (just requires some refactoring of code I've already written)
+- Add support for automatically building a workflow that executes on push or a manual trigger (for testing purposes)
+- Add support for BCC/CC and multiple recipients
 - Add support for including a custom message in the email
-- Address the issue of spam filters blocking the email
+- Add more control over whether HTML invoice is included in email body and whether PDF invoice is attached to email
+- Address the issue of spam filters blocking the email (maybe would be fixed by custom message mentioned above, or by initial message on push, asking recipient to add sender to contacts)
 - Figure out how to get Gmail SMTP auth to work
-- Figure out if it would be best to recommend doing work on a separate branch from main
+- Figure out if it would be best to recommend doing deployment on a separate branch from main, and what it would take to do multiple deployments on multiple branches (can you set secrets by branch rather than by repo?)
