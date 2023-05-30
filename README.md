@@ -4,7 +4,7 @@ Github gives away an extraordinary amount of cloud storage and cloud compute for
 
 Sample output: [HTML]( https://htmlpreview.github.io/?https://github.com/chriscarrollsmith/auto-invoicer/blob/main/sample_output/2023-05-29.html) | [PDF](https://github.com/chriscarrollsmith/auto-invoicer/blob/main/sample_output/2023-05-29.pdf)
 
-![](https://github.com/chriscarrollsmith/auto-invoicer/blob/main/output/2023-05-29.jpg)
+![](https://github.com/chriscarrollsmith/auto-invoicer/blob/main/sample_output/2023-05-29.jpg)
 
 ## Setup
 
