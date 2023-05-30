@@ -2,7 +2,7 @@
 
 Github gives away an extraordinary amount of cloud storage and cloud compute for free. You can use these resources for pretty much whatever you want, including email automation. To that end, this repo is an open source implementation that uses Github Actions to automate sending billing invoices by email.
 
-Sample output: [HTML]( https://htmlpreview.github.io/?https://github.com/chriscarrollsmith/auto-invoicer/blob/main/output/2023-05-29.html) | [PDF](https://github.com/chriscarrollsmith/auto-invoicer/blob/main/output/2023-05-29.pdf)
+Sample output: [HTML]( https://htmlpreview.github.io/?https://github.com/chriscarrollsmith/auto-invoicer/blob/main/sample_output/2023-05-29.html) | [PDF](https://github.com/chriscarrollsmith/auto-invoicer/blob/main/sample_output/2023-05-29.pdf)
 
 ![](https://github.com/chriscarrollsmith/auto-invoicer/blob/main/output/2023-05-29.jpg)
 
